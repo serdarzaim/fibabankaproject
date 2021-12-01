@@ -1,11 +1,14 @@
 package com.fibabankproject.banking.services;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fibabankproject.banking.domain.Account;
+import com.fibabankproject.banking.domain.Transaction;
 import com.fibabankproject.banking.domain.User;
 import com.fibabankproject.banking.exceptions.EtAuthException;
 import com.fibabankproject.banking.repositories.UserRepository;
@@ -24,7 +27,17 @@ public class UserServiceImpl implements UserService{
 		if(tckn != null) tckn = tckn.toLowerCase();
 		return userRepository.findByTcknAndPassword(tckn, password);
 	}
-
+    
+	@Override
+	public List<User> getAllUsers() {
+		return userRepository.getAllUsers();
+	}
+	
+	@Override
+	public void updateUser(User user) {
+		userRepository.updateUser(user);
+	}
+	
 	@Override
 	public User registerUser(String tckn, String firstName, String lastName, String email, String password)
 			throws EtAuthException {

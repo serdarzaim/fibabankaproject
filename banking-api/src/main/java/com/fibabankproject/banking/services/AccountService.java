@@ -10,12 +10,10 @@ public interface AccountService {
 
     List<Account> fetchAllAccounts(Integer userId);
 
-    Account fetchAccountById(Integer userId, Integer accountId) throws EtResourceNotFoundException;
-
-    Account addAccount(Integer userId, String title, String description) throws EtBadRequestException;
+    Account addAccount(Integer userId, String title, String description, Integer balance, String currency) throws EtBadRequestException;
 
     void updateAccount(Integer userId, Integer accountId, Account account) throws EtBadRequestException;
 
-    void removeAccountWithAllTransactions(Integer userId, Integer accountId) throws EtResourceNotFoundException;
+    void removeAccount(Integer userId, Integer accountId) throws EtResourceNotFoundException;
     
 }

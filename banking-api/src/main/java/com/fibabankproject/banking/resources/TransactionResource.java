@@ -13,7 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/accounts/{accountId}/transactions")
+//@RequestMapping("/api/accounts/{accountId}/transactions")
+@RequestMapping("/api/transactions")
 public class TransactionResource {
 
 
@@ -37,17 +38,6 @@ public class TransactionResource {
         return new ResponseEntity<>(transaction, HttpStatus.OK);
     }
     
-    @PostMapping("")
-    public ResponseEntity<Transaction> addTransaction(HttpServletRequest request,
-                                                      @PathVariable("accountId") Integer accountId,
-                                                      @RequestBody Map<String, Object> transactionMap) {
-        int userId = (Integer) request.getAttribute("userId");
-        Double amount = Double.valueOf(transactionMap.get("amount").toString());
-        String note = (String) transactionMap.get("note");
-        Long transactionDate = (Long) transactionMap.get("transactionDate");
-        Transaction transaction = transactionService.addTransaction(userId, accountId, amount, note, transactionDate);
-        return new ResponseEntity<>(transaction, HttpStatus.CREATED);
-    }
 
     @PutMapping("/{transactionId}")
     public ResponseEntity<Map<String, Boolean>> updateTransaction(HttpServletRequest request,
@@ -71,6 +61,19 @@ public class TransactionResource {
         map.put("success", true);
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
+    
+ 
+    @PostMapping("/moneytransfer")
+    public ResponseEntity<Boolean> moneyTransfer(HttpServletRequest request,
+                                                      @RequestBody Map<String, Object> req) {
+        int senderAccountID = (Integer) req.get("senderAccountID");
+        int receiverAccountID = (Integer) req.get("receiverAccountID");
+        Double amount = Double.valueOf(req.get("amount").toString());
+        String note = (String) req.get("note");
+        Boolean transaction = transactionService.transferMoney(senderAccountID, receiverAccountID, amount, note);
+        return new ResponseEntity<>(transaction, HttpStatus.CREATED);
+    }
+    
     
     
 }

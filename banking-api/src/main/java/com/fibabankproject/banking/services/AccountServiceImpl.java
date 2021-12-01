@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fibabankproject.banking.domain.Account;
+import com.fibabankproject.banking.exceptions.EtAuthException;
 import com.fibabankproject.banking.exceptions.EtBadRequestException;
 import com.fibabankproject.banking.exceptions.EtResourceNotFoundException;
 import com.fibabankproject.banking.repositories.AccountRepository;
@@ -20,20 +21,14 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Override
 	public List<Account> fetchAllAccounts(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return accountRepository.findAll(userId);
 	}
 
 	@Override
-	public Account fetchAccountById(Integer userId, Integer accountId) throws EtResourceNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Account addAccount(Integer userId, String title, String description) throws EtBadRequestException {
-		
-		int accountId = accountRepository.create(userId, title, description);
+	public Account addAccount(Integer userId, String title, String description,Integer balance, String currency ) throws EtBadRequestException {
+		int accountId = accountRepository.create(userId, title, description, balance, currency);
+		if(balance<=0)
+			throw new EtAuthException("Account without balance can not be created.");
 		return accountRepository.findById(userId, accountId);
 	}
 
@@ -44,9 +39,8 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public void removeAccountWithAllTransactions(Integer userId, Integer accountId) throws EtResourceNotFoundException {
-		// TODO Auto-generated method stub
-		
+	public void removeAccount(Integer userId, Integer accountId) throws EtResourceNotFoundException {
+		accountRepository.removeById(userId, accountId);
 	}
 
 }

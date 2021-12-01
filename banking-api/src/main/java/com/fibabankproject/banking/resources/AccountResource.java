@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fibabankproject.banking.domain.Account;
+import com.fibabankproject.banking.domain.User;
 import com.fibabankproject.banking.services.AccountService;
 
 @RestController
@@ -30,33 +31,27 @@ public class AccountResource {
     AccountService accountService;
 
     
-    @GetMapping("")
-    public ResponseEntity<List<Account>> getAllAccounts(HttpServletRequest request) {
-        int userId = (Integer) request.getAttribute("userId");
-        List<Account> accounts = accountService.fetchAllAccounts(userId);
+    @GetMapping("/all")
+    public ResponseEntity<List<Account>> getAllAccounts(HttpServletRequest request, @RequestBody Map<String, Object> req) {
+    	int userId = (Integer) req.get("userId");
+    	List<Account> accounts = accountService.fetchAllAccounts(userId);
         return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
    
 
-    @GetMapping("/{accountId}")
-    public ResponseEntity<Account> getAccountById(HttpServletRequest request,
-                                                    @PathVariable("accountId") Integer accountId) {
-        int userId = (Integer) request.getAttribute("userId");
-        Account account = accountService.fetchAccountById(userId, accountId);
-        return new ResponseEntity<>(account, HttpStatus.OK);
-    }
-
-    @PostMapping("")
+    @PostMapping("/create")
     public ResponseEntity<Account> addAccount(HttpServletRequest request,
                                                 @RequestBody Map<String, Object> accountMap) {
-        int userId = (Integer) request.getAttribute("userId");
+    	int userId = (Integer) accountMap.get("userId");
         String title = (String) accountMap.get("title");
         String description = (String) accountMap.get("description");
-        Account account = accountService.addAccount(userId, title, description);
+        int balance = (int) accountMap.get("balance");
+        String currency = (String) accountMap.get("currency");
+        Account account = accountService.addAccount(userId, title, description, balance, currency);
         return new ResponseEntity<>(account, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{accountId}")
+    @PutMapping("/update/{accountId}")
     public ResponseEntity<Map<String, Boolean>> updateAccount(HttpServletRequest request,
                                                                @PathVariable("accountId") Integer accountId,
                                                                @RequestBody Account account) {
@@ -67,17 +62,14 @@ public class AccountResource {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{accountId}")
-    public ResponseEntity<Map<String, Boolean>> deleteAccount(HttpServletRequest request,
+    @DeleteMapping("/delete/{accountId}")
+    public ResponseEntity<Map<String, Boolean>> deleteAccount(HttpServletRequest request, @RequestBody Map<String, Object> req,
                                                                @PathVariable("accountId") Integer accountId) {
-        int userId = (Integer) request.getAttribute("userId");
-        accountService.removeAccountWithAllTransactions(userId, accountId);
+    	int userId = (Integer) req.get("userId");
+    	accountService.removeAccount(userId, accountId);
         Map<String, Boolean> map = new HashMap<>();
         map.put("success", true);
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
-
-	
-
 	
 }
