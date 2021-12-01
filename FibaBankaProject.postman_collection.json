@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "ac5278f3-afd3-48af-83c7-dc421dff1cbe",
+		"name": "FibaBankaProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tckn\" : \"12456789\",\r\n    \"firstName\" : \"Serdar\",\r\n    \"lastName\" : \"Zaim\",\r\n    \"email\" : \"serdarzaim@outlook.com\",\r\n    \"password\" : \"qwer1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MzgzODE2MDMsImV4cCI6MTYzODM4ODgwMywidXNlcklkIjoyMCwidGNrbiI6IjE0MTMzMzI1MiIsImVtYWlsIjoiYXRha2FuQGhvdG1haWwuY29tIiwiZmlyc3ROYW1lIjoiYXRha2FuIiwibGFzdE5hbWUiOiJhdGFrYW4ifQ.kYfwKXcBW4sDARdPxkG-UGs4dkCt1QMbN6F2TzgXY8c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tckn\" : \"12456789\",\r\n    \"firstName\" : \"Serdar\",\r\n    \"lastName\" : \"Zaim\",\r\n    \"email\" : \"serdarzaim@outlook.com\",\r\n    \"password\" : \"1234qwer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/updateuser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"updateuser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tckn\" : \"12456789\",\r\n    \"password\" : \"qwer1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MzgzODQ2MjgsImV4cCI6MTYzODM5MTgyOCwidXNlcklkIjoxOSwidGNrbiI6Ijk4NDU0NjU0IiwiZW1haWwiOiJtZWpvQGhvdG1haWwuY29tIiwiZmlyc3ROYW1lIjoibWFsaSIsImxhc3ROYW1lIjoibWV2ZWxpIn0.1l2vP00iDd2KhZvqzQAOaLFjvmznIQh5JyA5DKSfyw0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\":19\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/accounts/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"accounts",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MzgzODI4MzEsImV4cCI6MTYzODM5MDAzMSwidXNlcklkIjoyMCwidGNrbiI6IjE0MTMzMzI1MiIsImVtYWlsIjoiYXRha2FuQGhvdG1haWwuY29tIiwiZmlyc3ROYW1lIjoiYXRha2FuIiwibGFzdE5hbWUiOiJhdGFrYW4ifQ.nwK2Eih5gpV1IUlX96uYGacwcwnBSYmkKDrKTM88Uew",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\" : 19,\r\n    \"title\" : \"Vadesiz TL\",\r\n    \"description\" : \"Maas Hesabim\",\r\n    \"balance\" : 100 ,\r\n    \"currency\" : \"TRY\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/accounts/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"accounts",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Account",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MzgzODI4MzEsImV4cCI6MTYzODM5MDAzMSwidXNlcklkIjoyMCwidGNrbiI6IjE0MTMzMzI1MiIsImVtYWlsIjoiYXRha2FuQGhvdG1haWwuY29tIiwiZmlyc3ROYW1lIjoiYXRha2FuIiwibGFzdE5hbWUiOiJhdGFrYW4ifQ.nwK2Eih5gpV1IUlX96uYGacwcwnBSYmkKDrKTM88Uew",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\" : 19\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/accounts/delete/21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"accounts",
+						"delete",
+						"21"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Money Transfer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MzgzODI4MzEsImV4cCI6MTYzODM5MDAzMSwidXNlcklkIjoyMCwidGNrbiI6IjE0MTMzMzI1MiIsImVtYWlsIjoiYXRha2FuQGhvdG1haWwuY29tIiwiZmlyc3ROYW1lIjoiYXRha2FuIiwibGFzdE5hbWUiOiJhdGFrYW4ifQ.nwK2Eih5gpV1IUlX96uYGacwcwnBSYmkKDrKTM88Uew",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"senderAccountID\" : 23,\r\n    \"receiverAccountID\" : 22,\r\n    \"amount\" : 10,\r\n    \"note\" : \"Harclik\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/transactions/moneytransfer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transactions",
+						"moneytransfer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
