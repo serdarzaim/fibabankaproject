@@ -78,6 +78,7 @@ public class UserResource {
                 .compact();
         Map<String, String> map = new HashMap<>();
         map.put("token", token);
+        map.put("userId", user.getUserId().toString());
         return map;
     }
 }
